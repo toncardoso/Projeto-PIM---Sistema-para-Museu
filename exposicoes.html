@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Marte - Exposições</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="caixa-conteudo caixa-exposicao">
+            <h1>Exposição Missão Marte</h1>
+            <p>Bem-vindo(a), <span id="exibirNomeVisitante"></span>!</p>
+            
+            <div id="conteudoExposicao" class="conteudo-exposicao">
+                <div class="imagem-exposicao">
+                    <img id="imagemExposicao" src="/placeholder.svg" alt="Imagem da exposição">
+                </div>
+                <div class="info-exposicao">
+                    <h2 id="tituloExposicao"></h2>
+                    <p id="descricaoExposicao"></p>
+                    <div class="historia-exposicao">
+                        <h3>Contexto Histórico</h3>
+                        <p id="historiaExposicao"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="botoes-navegacao">
+                <button id="btnAnterior" class="btn btn-secundario">Anterior</button>
+                <button id="btnProximo" class="btn btn-primario">Próximo</button>
+                <button id="btnFinalizar" class="btn btn-sucesso" style="display: none;">Finalizar</button>
+            </div>
+            
+            <div class="barra-progresso">
+                <div id="preenchimentoProgresso"></div>
+            </div>
+        </div>
+    </div>
+ 
+    <script src="js/api.js"></script>
+    <script>
+        // Variáveis de controle
+        let exposicoes = [];
+        let indiceExposicaoAtual = 0;
+        let tempoInicio = Date.now();
+        let temposExposicao = [];
+        
+        // Elementos DOM
+        const exibirNomeVisitante = document.getElementById('exibirNomeVisitante');
+        const imagemExposicao = document.getElementById('imagemExposicao');
+        const tituloExposicao = document.getElementById('tituloExposicao');
+        const descricaoExposicao = document.getElementById('descricaoExposicao');
+        const historiaExposicao = document.getElementById('historiaExposicao');
+        const btnAnterior = document.getElementById('btnAnterior');
+        const btnProximo = document.getElementById('btnProximo');
+        const btnFinalizar = document.getElementById('btnFinalizar');
+        const preenchimentoProgresso = document.getElementById('preenchimentoProgresso');
+        
+        // Inicialização
+        async function inicializar() {
+            // Exibir nome do visitante
+            const nomeVisitante = localStorage.getItem('nomeVisitante');
+            exibirNomeVisitante.textContent = nomeVisitante || 'Visitante';
+            
+            try {
+                // Obter exposições da API
+                exposicoes = await obterExposicoes();
+                
+                // Exibir primeira exposição
+                exibirExposicao(0);
+                
+                // Configurar botões
+                btnAnterior.addEventListener('click', mostrarExposicaoAnterior);
+                btnProximo.addEventListener('click', mostrarProximaExposicao);
+                btnFinalizar.addEventListener('click', finalizarExposicao);
+                
+                // Desabilitar botão anterior na primeira exposição
+                btnAnterior.disabled = true;
+            } catch (erro) {
+                console.error('Erro ao carregar exposições:', erro);
+                
+                // Fallback para modo offline (apenas para demonstração)
+                exposicoes = [
+                    {
+                        id: 1,
+                        titulo: "Preparação para Marte",
+                        caminhoImagem: "imagens/exposicoes/preparacao.jpg",
+                        descricao: "Equipamentos e treinamentos utilizados pelos astronautas antes da missão.",
+                        historia: "O treinamento para a missão a Marte começou em 2030, com simulações de gravidade e ambiente marciano em bases na Terra e na Lua."
+                    },
+                    {
+                        id: 2,
+                        titulo: "Nave Espacial Ares I",
+                        caminhoImagem: "imagens/exposicoes/nave.jpg",
+                        descricao: "A nave que transportou os primeiros humanos até o planeta vermelho.",
+                        historia: "A Ares I foi construída com tecnologia de propulsão iônica avançada, permitindo uma viagem mais rápida e eficiente que as anteriores."
+                    },
+                    {
+                        id: 3,
+                        titulo: "Primeiros Passos em Marte",
+                        caminhoImagem: "imagens/exposicoes/primeiros-passos.jpg",
+                        descricao: "O momento histórico dos primeiros passos humanos em solo marciano.",
+                        historia: "Em 12 de abril de 2035, a comandante Ana Silva tornou-se a primeira pessoa a pisar em Marte, pronunciando a frase: \"Um pequeno passo em um novo mundo, um salto gigante para o futuro da humanidade\"."
+                    },
+                    {
+                        id: 4,
+                        titulo: "Habitat Marciano",
+                        caminhoImagem: "imagens/exposicoes/habitat.jpg",
+                        descricao: "O módulo habitacional que serviu de base para a equipe durante a missão.",
+                        historia: "O habitat foi parcialmente construído por robôs autônomos enviados dois anos antes da chegada dos astronautas, utilizando materiais do próprio solo marciano."
+                    },
+                    {
+                        id: 5,
+                        titulo: "Descobertas Científicas",
+                        caminhoImagem: "imagens/exposicoes/descobertas.jpg",
+                        descricao: "As principais descobertas científicas realizadas durante a missão.",
+                        historia: "A equipe encontrou evidências de água líquida no subsolo e traços de moléculas orgânicas complexas, reforçando a possibilidade de vida microbiana no passado de Marte."
+                    }
+                ];
+                
+                exibirExposicao(0);
+                btnAnterior.addEventListener('click', mostrarExposicaoAnterior);
+                btnProximo.addEventListener('click', mostrarProximaExposicao);
+                btnFinalizar.addEventListener('click', finalizarExposicao);
+                btnAnterior.disabled = true;
+            }
+        }
+        
+        // Exibir exposição atual
+        function exibirExposicao(indice) {
+            // Registrar tempo da exposição anterior
+            if (indice > 0) {
+                registrarTempoExposicao(indice - 1);
+            }
+            
+            const exposicao = exposicoes[indice];
+            imagemExposicao.src = exposicao.caminhoImagem || "imagens/exposicoes/placeholder.jpg";
+            imagemExposicao.alt = exposicao.titulo;
+            tituloExposicao.textContent = exposicao.titulo;
+            descricaoExposicao.textContent = exposicao.descricao;
+            historiaExposicao.textContent = exposicao.historia;
+            
+            // Atualizar botões
+            btnAnterior.disabled = indice === 0;
+            
+            if (indice === exposicoes.length - 1) {
+                btnProximo.style.display = 'none';
+                btnFinalizar.style.display = 'inline-block';
+            } else {
+                btnProximo.style.display = 'inline-block';
+                btnFinalizar.style.display = 'none';
+            }
+            
+            // Atualizar barra de progresso
+            const progresso = ((indice + 1) / exposicoes.length) * 100;
+            preenchimentoProgresso.style.width = `${progresso}%`;
+            
+            // Reiniciar cronômetro para a exposição atual
+            tempoInicio = Date.now();
+        }
+        
+        // Registrar tempo de visualização
+        async function registrarTempoExposicao(indice) {
+            const tempoFim = Date.now();
+            const duracao = Math.floor((tempoFim - tempoInicio) / 1000); // em segundos
+            
+            temposExposicao[indice] = {
+                idExposicao: exposicoes[indice].id,
+                duracao: duracao
+            };
+            
+            // Enviar para a API
+            try {
+                const idVisitante = localStorage.getItem('idVisitante');
+                if (idVisitante) {
+                    await registrarVisualizacaoExposicao(idVisitante, exposicoes[indice].id, duracao);
+                }
+            } catch (erro) {
+                console.error('Erro ao registrar tempo de visualização:', erro);
+            }
+        }
+        
+        // Mostrar exposição anterior
+        function mostrarExposicaoAnterior() {
+            if (indiceExposicaoAtual > 0) {
+                indiceExposicaoAtual--;
+                exibirExposicao(indiceExposicaoAtual);
+            }
+        }
+        
+        // Mostrar próxima exposição
+        function mostrarProximaExposicao() {
+            if (indiceExposicaoAtual < exposicoes.length - 1) {
+                indiceExposicaoAtual++;
+                exibirExposicao(indiceExposicaoAtual);
+            }
+        }
+        
+        // Finalizar exposição
+        async function finalizarExposicao() {
+            // Registrar tempo da última exposição
+            registrarTempoExposicao(indiceExposicaoAtual);
+            
+            // Marcar como concluído na API
+            try {
+                const idVisitante = localStorage.getItem('idVisitante');
+                if (idVisitante) {
+                    await completarExposicao(idVisitante);
+                }
+            } catch (erro) {
+                console.error('Erro ao finalizar exposição:', erro);
+            }
+            
+            // Marcar como concluído localmente
+            localStorage.setItem('exposicoesCompletadas', 'true');
+            
+            // Redirecionar para a pesquisa
+            window.location.href = 'pesquisa.html';
+        }
+        
+        // Inicializar a página
+        inicializar();
+    </script>
+</body>
+</html>

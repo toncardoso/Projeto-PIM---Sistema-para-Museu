@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Marte - Registro</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container container-registro">
+        <div class="caixa-conteudo">
+            <h1>Registro de Visitante</h1>
+            <p>Por favor, informe seus dados para iniciar a visita</p>
+            
+            <form id="formVisitante">
+                <div class="grupo-form">
+                    <label for="nomeVisitante">Nome:</label>
+                    <input type="text" id="nomeVisitante" required>
+                    <button type="button" class="alternar-teclado" data-target="nomeVisitante">⌨️</button>
+                </div>
+                
+                <div class="grupo-form">
+                    <label for="dataNascimento">Data de Nascimento (DD/MM/AAAA):</label>
+                    <input type="text" id="dataNascimento" placeholder="DD/MM/AAAA" required>
+                    <button type="button" class="alternar-teclado" data-target="dataNascimento">⌨️</button>
+                </div>
+                
+                <button type="submit" class="btn btn-primario">Continuar</button>
+            </form>
+            
+            <!-- Teclado Virtual para Nome -->
+            <div id="tecladoNome" class="teclado-virtual">
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="nomeVisitante">1</div>
+                    <div class="tecla" data-field="nomeVisitante">2</div>
+                    <div class="tecla" data-field="nomeVisitante">3</div>
+                    <div class="tecla" data-field="nomeVisitante">4</div>
+                    <div class="tecla" data-field="nomeVisitante">5</div>
+                    <div class="tecla" data-field="nomeVisitante">6</div>
+                    <div class="tecla" data-field="nomeVisitante">7</div>
+                    <div class="tecla" data-field="nomeVisitante">8</div>
+                    <div class="tecla" data-field="nomeVisitante">9</div>
+                    <div class="tecla" data-field="nomeVisitante">0</div>
+                </div>
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="nomeVisitante">Q</div>
+                    <div class="tecla" data-field="nomeVisitante">W</div>
+                    <div class="tecla" data-field="nomeVisitante">E</div>
+                    <div class="tecla" data-field="nomeVisitante">R</div>
+                    <div class="tecla" data-field="nomeVisitante">T</div>
+                    <div class="tecla" data-field="nomeVisitante">Y</div>
+                    <div class="tecla" data-field="nomeVisitante">U</div>
+                    <div class="tecla" data-field="nomeVisitante">I</div>
+                    <div class="tecla" data-field="nomeVisitante">O</div>
+                    <div class="tecla" data-field="nomeVisitante">P</div>
+                </div>
+                <div class="linha-teclado">
+                    <div class="tecla tecla-maiuscula" data-field="nomeVisitante">Aa</div>
+                    <div class="tecla" data-field="nomeVisitante">A</div>
+                    <div class="tecla" data-field="nomeVisitante">S</div>
+                    <div class="tecla" data-field="nomeVisitante">D</div>
+                    <div class="tecla" data-field="nomeVisitante">F</div>
+                    <div class="tecla" data-field="nomeVisitante">G</div>
+                    <div class="tecla" data-field="nomeVisitante">H</div>
+                    <div class="tecla" data-field="nomeVisitante">J</div>
+                    <div class="tecla" data-field="nomeVisitante">K</div>
+                    <div class="tecla" data-field="nomeVisitante">L</div>
+                    <div class="tecla" data-field="nomeVisitante">Ç</div>
+                </div>
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="nomeVisitante">Z</div>
+                    <div class="tecla" data-field="nomeVisitante">X</div>
+                    <div class="tecla" data-field="nomeVisitante">C</div>
+                    <div class="tecla" data-field="nomeVisitante">V</div>
+                    <div class="tecla" data-field="nomeVisitante">B</div>
+                    <div class="tecla" data-field="nomeVisitante">N</div>
+                    <div class="tecla" data-field="nomeVisitante">M</div>
+                    <div class="tecla tecla-espaco" data-field="nomeVisitante">Espaço</div>
+                    <div class="tecla tecla-apagar" data-field="nomeVisitante">⌫</div>
+                </div>
+            </div>
+            
+            <!-- Teclado Virtual para Data -->
+            <div id="tecladoData" class="teclado-virtual">
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="dataNascimento">1</div>
+                    <div class="tecla" data-field="dataNascimento">2</div>
+                    <div class="tecla" data-field="dataNascimento">3</div>
+                    <div class="tecla" data-field="dataNascimento">4</div>
+                    <div class="tecla" data-field="dataNascimento">5</div>
+                    <div class="tecla" data-field="dataNascimento">6</div>
+                    <div class="tecla" data-field="dataNascimento">7</div>
+                    <div class="tecla" data-field="dataNascimento">8</div>
+                    <div class="tecla" data-field="dataNascimento">9</div>
+                    <div class="tecla" data-field="dataNascimento">0</div>
+                </div>
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="dataNascimento">/</div>
+                    <div class="tecla" data-field="dataNascimento">-</div>
+                    <div class="tecla" data-field="dataNascimento">.</div>
+                    <div class="tecla tecla-apagar" data-field="dataNascimento">⌫</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script simplificado para o teclado virtual
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar/ocultar teclado virtual
+            document.querySelectorAll('.alternar-teclado').forEach(botao => {
+                botao.addEventListener('click', function() {
+                    const campoAlvo = this.getAttribute('data-target');
+                    
+                    // Ocultar todos os teclados
+                    document.querySelectorAll('.teclado-virtual').forEach(teclado => {
+                        teclado.style.display = 'none';
+                    });
+                    
+                    // Mostrar o teclado correspondente
+                    if (campoAlvo === 'nomeVisitante') {
+                        const teclado = document.getElementById('tecladoNome');
+                        teclado.style.display = 'block';
+                        document.getElementById('nomeVisitante').focus();
+                    } else if (campoAlvo === 'dataNascimento') {
+                        const teclado = document.getElementById('tecladoData');
+                        teclado.style.display = 'block';
+                        document.getElementById('dataNascimento').focus();
+                    }
+                });
+            });
+            
+            // Adicionar evento de clique às teclas
+            document.querySelectorAll('.tecla').forEach(tecla => {
+                tecla.addEventListener('click', function() {
+                    const campoAlvo = this.getAttribute('data-field');
+                    const campo = document.getElementById(campoAlvo);
+                    if (!campo) return;
+                    
+                    const valorTecla = this.textContent;
+                    
+                    if (valorTecla === '⌫') {
+                        // Backspace - remover último caractere
+                        campo.value = campo.value.slice(0, -1);
+                    } else if (valorTecla === 'Espaço') {
+                        // Espaço
+                        campo.value += ' ';
+                    } else if (valorTecla === 'Aa') {
+                        // Alternar maiúsculas/minúsculas
+                        const teclasLetras = document.querySelectorAll(`.tecla[data-field="${campoAlvo}"]`);
+                        const ehMaiusculo = this.getAttribute('data-maiusculo') !== 'false';
+                        
+                        teclasLetras.forEach(tecla => {
+                            if (tecla.textContent.length === 1 && /[a-zA-Z]/.test(tecla.textContent)) {
+                                tecla.textContent = ehMaiusculo ? 
+                                    tecla.textContent.toLowerCase() : 
+                                    tecla.textContent.toUpperCase();
+                            }
+                        });
+                        
+                        this.setAttribute('data-maiusculo', ehMaiusculo ? 'false' : 'true');
+                        return;
+                    } else {
+                        // Caractere normal
+                        campo.value += valorTecla;
+                    }
+                    
+                    // Formatar data automaticamente
+                    if (campoAlvo === 'dataNascimento') {
+                        let valor = campo.value;
+                        
+                        // Remover caracteres não numéricos, exceto barras
+                        valor = valor.replace(/[^\d\/]/g, '');
+                        
+                        // Adicionar barras automaticamente
+                        if (valor.length === 2 && !valor.includes('/')) {
+                            valor += '/';
+                        } else if (valor.length === 5 && valor.indexOf('/', 3) === -1) {
+                            valor += '/';
+                        }
+                        
+                        // Limitar o comprimento a 10 caracteres (DD/MM/AAAA)
+                        if (valor.length > 10) {
+                            valor = valor.slice(0, 10);
+                        }
+                        
+                        // Atualizar o valor do campo
+                        campo.value = valor;
+                    }
+                    
+                    // Disparar evento de input para atualizar validações
+                    const evento = new Event('input', { bubbles: true });
+                    campo.dispatchEvent(evento);
+                    
+                    // Focar no input após digitar
+                    campo.focus();
+                });
+            });
+            
+            // Validar e formatar data
+            document.getElementById('dataNascimento').addEventListener('input', function(e) {
+                let valor = e.target.value;
+                
+                // Remover caracteres não numéricos, exceto barras
+                valor = valor.replace(/[^\d\/]/g, '');
+                
+                // Adicionar barras automaticamente
+                if (valor.length === 2 && !valor.includes('/')) {
+                    valor += '/';
+                } else if (valor.length === 5 && valor.indexOf('/', 3) === -1) {
+                    valor += '/';
+                }
+                
+                // Limitar o comprimento a 10 caracteres (DD/MM/AAAA)
+                if (valor.length > 10) {
+                    valor = valor.slice(0, 10);
+                }
+                
+                // Atualizar o valor do campo
+                e.target.value = valor;
+            });
+            
+            // Modificar o evento de submit para converter a data para o formato ISO
+            document.getElementById('formVisitante').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const nomeVisitante = document.getElementById('nomeVisitante').value;
+                let dataNascimento = document.getElementById('dataNascimento').value;
+                
+                if (!nomeVisitante || !dataNascimento) {
+                    alert('Por favor, preencha todos os campos');
+                    return;
+                }
+                
+                // Validar formato da data (DD/MM/AAAA)
+                if (!/^\d{2}\/\d{2}\/\d{4}$/.test(dataNascimento)) {
+                    alert('Por favor, digite a data no formato DD/MM/AAAA');
+                    return;
+                }
+                
+                // Converter para formato ISO (AAAA-MM-DD)
+                const partes = dataNascimento.split('/');
+                const dataFormatada = `${partes[2]}-${partes[1]}-${partes[0]}`;
+                
+                try {
+                    // Usar a API para registrar o visitante
+                    const visitante = await registrarVisitante(nomeVisitante, dataFormatada);
+                    
+                    // Salvar o ID do visitante no localStorage para uso nas outras páginas
+                    localStorage.setItem('idVisitante', visitante.id);
+                    localStorage.setItem('nomeVisitante', visitante.nome);
+                    
+                    // Redirecionar para a página de exposições
+                    window.location.href = 'exposicoes.html';
+                } catch (erro) {
+                    alert('Erro ao registrar visitante. Por favor, tente novamente.');
+                    console.error(erro);
+                    
+                    // Fallback para modo offline (apenas para demonstração)
+                    localStorage.setItem('nomeVisitante', nomeVisitante);
+                    localStorage.setItem('dataNascimento', dataFormatada);
+                    localStorage.setItem('idVisitante', Date.now().toString());
+                    window.location.href = 'exposicoes.html';
+                }
+            });
+        });
+    </script>
+    <script src="js/api.js"></script>
+</body>
+</html>

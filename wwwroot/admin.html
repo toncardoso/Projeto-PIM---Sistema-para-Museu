@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Marte - Administração</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container container-admin">
+        <div class="barra-lateral">
+            <h2>Painel Admin</h2>
+            <ul class="menu-admin">
+                <li><a href="#" class="ativo" data-secao="painel">Painel</a></li>
+                <li><a href="#" data-secao="visitantes">Visitantes</a></li>
+                <li><a href="#" data-secao="pesquisas">Pesquisas</a></li>
+                <li><a href="#" data-secao="relatorios">Relatórios</a></li>
+                <li><a href="index.html">Sair</a></li>
+            </ul>
+        </div>
+        
+        <div class="conteudo-principal">
+            <!-- Painel -->
+            <div id="painel" class="secao-admin ativo">
+                <h1>Painel</h1>
+                
+                <div class="grade-estatisticas">
+                    <div class="cartao-estatistica">
+                        <h3>Total de Visitantes</h3>
+                        <p class="numero-estatistica" id="totalVisitantes">0</p>
+                    </div>
+                    <div class="cartao-estatistica">
+                        <h3>Pesquisas Respondidas</h3>
+                        <p class="numero-estatistica" id="respostasPesquisa">0</p>
+                    </div>
+                    <div class="cartao-estatistica">
+                        <h3>Taxa de Resposta</h3>
+                        <p class="numero-estatistica" id="taxaResposta">0%</p>
+                    </div>
+                    <div class="cartao-estatistica">
+                        <h3>Satisfação Geral</h3>
+                        <p class="numero-estatistica" id="taxaSatisfacao">0%</p>
+                    </div>
+                </div>
+                
+                <div class="container-grafico">
+                    <h3>Visitantes por Dia</h3>
+                    <div class="grafico-simples" id="graficoVisitantes">
+                        <div class="barra-grafico" style="height: 0%;">Seg</div>
+                        <div class="barra-grafico" style="height: 0%;">Ter</div>
+                        <div class="barra-grafico" style="height: 0%;">Qua</div>
+                        <div class="barra-grafico" style="height: 0%;">Qui</div>
+                        <div class="barra-grafico" style="height: 0%;">Sex</div>
+                        <div class="barra-grafico" style="height: 0%;">Sáb</div>
+                        <div class="barra-grafico" style="height: 0%;">Dom</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visitantes -->
+            <div id="visitantes" class="secao-admin">
+                <h1>Visitantes</h1>
+                
+                <table class="tabela-dados">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Data da Visita</th>
+                            <th>Exposição Completa</th>
+                            <th>Pesquisa Respondida</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabelaVisitantes">
+                        <tr>
+                            <td colspan="5">Nenhum visitante registrado</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Pesquisas -->
+            <div id="pesquisas" class="secao-admin">
+                <h1>Pesquisas</h1>
+                
+                <div class="estatisticas-pesquisa">
+                    <h3>Resultados das Pesquisas</h3>
+                    
+                    <div class="categoria-pesquisa">
+                        <h4>Experiência Geral</h4>
+                        <div class="barras-pesquisa" id="barrasAvaliacaoExperiencia">
+                            <p>Nenhuma pesquisa respondida ainda.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="categoria-pesquisa">
+                        <h4>Qualidade das Obras</h4>
+                        <div class="barras-pesquisa" id="barrasAvaliacaoQualidade">
+                            <p>Nenhuma pesquisa respondida ainda.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="categoria-pesquisa">
+                        <h4>Recomendaria</h4>
+                        <div class="barras-pesquisa" id="barrasAvaliacaoRecomendacao">
+                            <p>Nenhuma pesquisa respondida ainda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Relatórios -->
+            <div id="relatorios" class="secao-admin">
+                <h1>Relatórios</h1>
+                
+                <div class="opcoes-relatorio">
+                    <button class="btn btn-primario" id="btnGerarRelatorio">Gerar Relatório Completo</button>
+                    <button class="btn btn-secundario" id="btnExportarCsv">Exportar Dados (CSV)</button>
+                </div>
+                
+                <div class="previa-relatorio">
+                    <h3>Relatório de Visitação</h3>
+                    <p>Período: <span id="periodoRelatorio">Atual</span></p>
+                    
+                    <div class="secao-relatorio">
+                        <h4>Estatísticas Gerais</h4>
+                        <ul id="estatisticasRelatorio">
+                            <li>Nenhum dado disponível</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="secao-relatorio">
+                        <h4>Exposições Mais Populares</h4>
+                        <ol id="exposicoesPopulares">
+                            <li>Nenhum dado disponível</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="secao-relatorio">
+                        <h4>Relatório Completo</h4>
+                        <pre id="relatorioCompleto" class="texto-relatorio">Clique em "Gerar Relatório Completo" para visualizar.</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        // Script para navegação no painel administrativo
+        document.querySelectorAll('.menu-admin a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Se for o link "Sair", não prevenir o comportamento padrão
+                if (this.getAttribute('href') === 'index.html') {
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                // Remover classe ativa de todos os links e seções
+                document.querySelectorAll('.menu-admin a').forEach(item => {
+                    item.classList.remove('ativo');
+                });
+                document.querySelectorAll('.secao-admin').forEach(secao => {
+                    secao.classList.remove('ativo');
+                });
+                
+                // Adicionar classe ativa ao link clicado
+                this.classList.add('ativo');
+                
+                // Mostrar seção correspondente
+                const idSecao = this.getAttribute('data-secao');
+                document.getElementById(idSecao).classList.add('ativo');
+            });
+        });
+        
+        // Carregar dados do painel
+        async function carregarPainel() {
+            try {
+                const estatisticas = await obterEstatisticasPainel();
+                
+                // Atualizar estatísticas
+                document.getElementById('totalVisitantes').textContent = estatisticas.totalVisitantes;
+                document.getElementById('respostasPesquisa').textContent = estatisticas.pesquisasCompletadas;
+                document.getElementById('taxaResposta').textContent = `${estatisticas.taxaRespostaPesquisa.toFixed(1)}%`;
+                
+                // Calcular satisfação geral (exemplo simples)
+                const taxaSatisfacao = estatisticas.totalVisitantes > 0 ? "0%" : "0%"; // Em produção, calcule a partir dos dados reais
+                document.getElementById('taxaSatisfacao').textContent = taxaSatisfacao;
+                
+                // Atualizar gráfico de visitantes
+                atualizarGraficoVisitantes(estatisticas.visitantesPorDia);
+            } catch (erro) {
+                console.error('Erro ao carregar painel:', erro);
+            }
+        }
+        
+        // Atualizar gráfico de visitantes
+        function atualizarGraficoVisitantes(dados) {
+            const containerGrafico = document.getElementById('graficoVisitantes');
+            containerGrafico.innerHTML = '';
+            
+            const dias = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
+            
+            // Encontrar o valor máximo para calcular as porcentagens
+            const valorMaximo = Math.max(...dados, 1); // Usar pelo menos 1 para evitar divisão por zero
+            
+            dias.forEach((dia, indice) => {
+                const valor = dados[indice];
+                const porcentagem = (valor / valorMaximo) * 100;
+                
+                const barra = document.createElement('div');
+                barra.className = 'barra-grafico';
+                barra.style.height = `${porcentagem}%`;
+                barra.textContent = dia;
+                
+                // Adicionar tooltip com o valor
+                barra.title = `${dia}: ${valor} visitante(s)`;
+                
+                containerGrafico.appendChild(barra);
+            });
+        }
+        
+        // Carregar lista de visitantes
+        async function carregarVisitantes() {
+            try {
+                const visitantes = await obterVisitantes();
+                
+                const corpoTabela = document.getElementById('corpoTabelaVisitantes');
+                corpoTabela.innerHTML = '';
+                
+                if (visitantes.length === 0) {
+                    corpoTabela.innerHTML = '<tr><td colspan="5">Nenhum visitante registrado</td></tr>';
+                    return;
+                }
+                
+                visitantes.forEach(visitante => {
+                    const linha = document.createElement('tr');
+                    linha.innerHTML = `
+                        <td>${visitante.id}</td>
+                        <td>${visitante.nome}</td>
+                        <td>${new Date(visitante.dataVisita).toLocaleDateString()}</td>
+                        <td>${visitante.exposicaoCompleta ? 'Sim' : 'Não'}</td>
+                        <td>${visitante.pesquisaCompleta ? 'Sim' : 'Não'}</td>
+                    `;
+                    corpoTabela.appendChild(linha);
+                });
+            } catch (erro) {
+                console.error('Erro ao carregar visitantes:', erro);
+            }
+        }
+        
+        // Carregar resultados de pesquisas
+        async function carregarPesquisas() {
+            try {
+                const visitantes = await obterVisitantes();
+                const pesquisasRespondidas = visitantes.filter(v => v.pesquisaCompleta).length;
+                
+                if (pesquisasRespondidas === 0) {
+                    // Não há pesquisas para mostrar
+                    return;
+                }
+                
+                // Em uma implementação real, você buscaria os dados de pesquisa da API
+                // e geraria as estatísticas e gráficos com base nesses dados
+                
+                // Por enquanto, vamos apenas atualizar as mensagens
+                document.getElementById('barrasAvaliacaoExperiencia').innerHTML = 
+                    '<p>Dados de pesquisa serão exibidos quando houver respostas.</p>';
+                document.getElementById('barrasAvaliacaoQualidade').innerHTML = 
+                    '<p>Dados de pesquisa serão exibidos quando houver respostas.</p>';
+                document.getElementById('barrasAvaliacaoRecomendacao').innerHTML = 
+                    '<p>Dados de pesquisa serão exibidos quando houver respostas.</p>';
+                
+            } catch (erro) {
+                console.error('Erro ao carregar pesquisas:', erro);
+            }
+        }
+        
+        // Gerar relatório
+        document.getElementById('btnGerarRelatorio').addEventListener('click', async function() {
+            try {
+                const dadosRelatorio = await gerarRelatorio();
+                document.getElementById('relatorioCompleto').textContent = dadosRelatorio.relatorio;
+                
+                // Atualizar estatísticas do relatório
+                const estatisticas = await obterEstatisticasPainel();
+                
+                if (estatisticas.totalVisitantes > 0) {
+                    document.getElementById('estatisticasRelatorio').innerHTML = `
+                        <li>Total de visitantes: ${estatisticas.totalVisitantes}</li>
+                        <li>Pesquisas respondidas: ${estatisticas.pesquisasCompletadas}</li>
+                        <li>Taxa de resposta: ${estatisticas.taxaRespostaPesquisa.toFixed(1)}%</li>
+                    `;
+                } else {
+                    document.getElementById('estatisticasRelatorio').innerHTML = 
+                        '<li>Nenhum dado disponível</li>';
+                }
+                
+                // Atualizar período do relatório
+                document.getElementById('periodoRelatorio').textContent = 
+                    `${new Date().toLocaleDateString()} (Atual)`;
+                
+            } catch (erro) {
+                console.error('Erro ao gerar relatório:', erro);
+                document.getElementById('relatorioCompleto').textContent = 'Erro ao gerar relatório. Tente novamente.';
+            }
+        });
+        
+        // Exportar dados em CSV
+        document.getElementById('btnExportarCsv').addEventListener('click', async function() {
+            try {
+                const visitantes = await obterVisitantes();
+                
+                if (visitantes.length === 0) {
+                    alert('Não há dados para exportar.');
+                    return;
+                }
+                
+                // Criar conteúdo CSV
+                let csvContent = "ID,Nome,Data da Visita,Exposição Completa,Pesquisa Respondida\n";
+                
+                visitantes.forEach(visitante => {
+                    csvContent += `${visitante.id},"${visitante.nome}",${new Date(visitante.dataVisita).toLocaleDateString()},${visitante.exposicaoCompleta ? 'Sim' : 'Não'},${visitante.pesquisaCompleta ? 'Sim' : 'Não'}\n`;
+                });
+                
+                // Criar blob e link para download
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.setAttribute('href', url);
+                link.setAttribute('download', `visitantes_${new Date().toISOString().split('T')[0]}.csv`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+            } catch (erro) {
+                console.error('Erro ao exportar dados:', erro);
+                alert('Erro ao exportar dados. Tente novamente.');
+            }
+        });
+        
+        // Inicializar a página
+        carregarPainel();
+        carregarVisitantes();
+        carregarPesquisas();
+    </script>
+</body>
+</html>

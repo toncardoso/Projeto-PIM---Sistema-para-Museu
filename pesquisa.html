@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Marte - Pesquisa</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="caixa-conteudo">
+            <h1>Pesquisa de Satisfação</h1>
+            <p>Obrigado por visitar a exposição Missão Marte! Por favor, responda à nossa pesquisa.</p>
+            
+            <form id="formPesquisa">
+                <div class="grupo-form">
+                    <label>Como você avalia sua experiência geral?</label>
+                    <div class="opcoes-avaliacao">
+                        <label><input type="radio" name="avaliacaoExperiencia" value="excelente" required> Excelente</label>
+                        <label><input type="radio" name="avaliacaoExperiencia" value="bom"> Bom</label>
+                        <label><input type="radio" name="avaliacaoExperiencia" value="regular"> Regular</label>
+                        <label><input type="radio" name="avaliacaoExperiencia" value="ruim"> Ruim</label>
+                    </div>
+                </div>
+                
+                <div class="grupo-form">
+                    <label>Como você avalia a qualidade das obras expostas?</label>
+                    <div class="opcoes-avaliacao">
+                        <label><input type="radio" name="avaliacaoQualidade" value="excelente" required> Excelente</label>
+                        <label><input type="radio" name="avaliacaoQualidade" value="bom"> Bom</label>
+                        <label><input type="radio" name="avaliacaoQualidade" value="regular"> Regular</label>
+                        <label><input type="radio" name="avaliacaoQualidade" value="ruim"> Ruim</label>
+                    </div>
+                </div>
+                
+                <div class="grupo-form">
+                    <label>Como você avalia a clareza das informações?</label>
+                    <div class="opcoes-avaliacao">
+                        <label><input type="radio" name="avaliacaoClarez" value="excelente" required> Excelente</label>
+                        <label><input type="radio" name="avaliacaoClarez" value="bom"> Bom</label>
+                        <label><input type="radio" name="avaliacaoClarez" value="regular"> Regular</label>
+                        <label><input type="radio" name="avaliacaoClarez" value="ruim"> Ruim</label>
+                    </div>
+                </div>
+                
+                <div class="grupo-form">
+                    <label>Você recomendaria esta exposição?</label>
+                    <div class="opcoes-avaliacao">
+                        <label><input type="radio" name="avaliacaoRecomendacao" value="sim" required> Sim</label>
+                        <label><input type="radio" name="avaliacaoRecomendacao" value="talvez"> Talvez</label>
+                        <label><input type="radio" name="avaliacaoRecomendacao" value="não"> Não</label>
+                    </div>
+                </div>
+                
+                <div class="grupo-form">
+                    <label for="email">E-mail (opcional):</label>
+                    <input type="email" id="email">
+                    <button type="button" class="alternar-teclado" data-target="email">⌨️</button>
+                </div>
+                
+                <div class="grupo-form">
+                    <label for="sugestoes">Sugestões (opcional):</label>
+                    <textarea id="sugestoes" rows="4"></textarea>
+                    <button type="button" class="alternar-teclado" data-target="sugestoes">⌨️</button>
+                </div>
+                
+                <button type="submit" class="btn btn-primario">Enviar Pesquisa</button>
+            </form>
+            
+            <!-- Teclado Virtual para Email -->
+            <div id="tecladoEmail" class="teclado-virtual">
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="email">1</div>
+                    <div class="tecla" data-field="email">2</div>
+                    <div class="tecla" data-field="email">3</div>
+                    <div class="tecla" data-field="email">4</div>
+                    <div class="tecla" data-field="email">5</div>
+                    <div class="tecla" data-field="email">6</div>
+                    <div class="tecla" data-field="email">7</div>
+                    <div class="tecla" data-field="email">8</div>
+                    <div class="tecla" data-field="email">9</div>
+                    <div class="tecla" data-field="email">0</div>
+                </div>
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="email">q</div>
+                    <div class="tecla" data-field="email">w</div>
+                    <div class="tecla" data-field="email">e</div>
+                    <div class="tecla" data-field="email">r</div>
+                    <div class="tecla" data-field="email">t</div>
+                    <div class="tecla" data-field="email">y</div>
+                    <div class="tecla" data-field="email">u</div>
+                    <div class="tecla" data-field="email">i</div>
+                    <div class="tecla" data-field="email">o</div>
+                    <div class="tecla" data-field="email">p</div>
+                </div>
+                <div class="linha-teclado">
+                    <div class="tecla tecla-maiuscula" data-field="email">Aa</div>
+                    <div class="tecla" data-field="email">a</div>
+                    <div class="tecla" data-field="email">s</div>
+                    <div class="tecla" data-field="email">d</div>
+                    <div class="tecla" data-field="email">f</div>
+                    <div class="tecla" data-field="email">g</div>
+                    <div class="tecla" data-field="email">h</div>
+                    <div class="tecla" data-field="email">j</div>
+                    <div class="tecla" data-field="email">k</div>
+                    <div class="tecla" data-field="email">l</div>
+                </div>
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="email">z</div>
+                    <div class="tecla" data-field="email">x</div>
+                    <div class="tecla" data-field="email">c</div>
+                    <div class="tecla" data-field="email">v</div>
+                    <div class="tecla" data-field="email">b</div>
+                    <div class="tecla" data-field="email">n</div>
+                    <div class="tecla" data-field="email">m</div>
+                    <div class="tecla" data-field="email">.</div>
+                    <div class="tecla" data-field="email">@</div>
+                    <div class="tecla tecla-apagar" data-field="email">⌫</div>
+                </div>
+            </div>
+            
+            <!-- Teclado Virtual para Sugestões -->
+            <div id="tecladoSugestoes" class="teclado-virtual">
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="sugestoes">1</div>
+                    <div class="tecla" data-field="sugestoes">2</div>
+                    <div class="tecla" data-field="sugestoes">3</div>
+                    <div class="tecla" data-field="sugestoes">4</div>
+                    <div class="tecla" data-field="sugestoes">5</div>
+                    <div class="tecla" data-field="sugestoes">6</div>
+                    <div class="tecla" data-field="sugestoes">7</div>
+                    <div class="tecla" data-field="sugestoes">8</div>
+                    <div class="tecla" data-field="sugestoes">9</div>
+                    <div class="tecla" data-field="sugestoes">0</div>
+                </div>
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="sugestoes">q</div>
+                    <div class="tecla" data-field="sugestoes">w</div>
+                    <div class="tecla" data-field="sugestoes">e</div>
+                    <div class="tecla" data-field="sugestoes">r</div>
+                    <div class="tecla" data-field="sugestoes">t</div>
+                    <div class="tecla" data-field="sugestoes">y</div>
+                    <div class="tecla" data-field="sugestoes">u</div>
+                    <div class="tecla" data-field="sugestoes">i</div>
+                    <div class="tecla" data-field="sugestoes">o</div>
+                    <div class="tecla" data-field="sugestoes">p</div>
+                </div>
+                <div class="linha-teclado">
+                    <div class="tecla tecla-maiuscula" data-field="sugestoes">Aa</div>
+                    <div class="tecla" data-field="sugestoes">a</div>
+                    <div class="tecla" data-field="sugestoes">s</div>
+                    <div class="tecla" data-field="sugestoes">d</div>
+                    <div class="tecla" data-field="sugestoes">f</div>
+                    <div class="tecla" data-field="sugestoes">g</div>
+                    <div class="tecla" data-field="sugestoes">h</div>
+                    <div class="tecla" data-field="sugestoes">j</div>
+                    <div class="tecla" data-field="sugestoes">k</div>
+                    <div class="tecla" data-field="sugestoes">l</div>
+                </div>
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="sugestoes">z</div>
+                    <div class="tecla" data-field="sugestoes">x</div>
+                    <div class="tecla" data-field="sugestoes">c</div>
+                    <div class="tecla" data-field="sugestoes">v</div>
+                    <div class="tecla" data-field="sugestoes">b</div>
+                    <div class="tecla" data-field="sugestoes">n</div>
+                    <div class="tecla" data-field="sugestoes">m</div>
+                    <div class="tecla tecla-espaco" data-field="sugestoes">Espaço</div>
+                    <div class="tecla tecla-apagar" data-field="sugestoes">⌫</div>
+                </div>
+                <div class="linha-teclado">
+                    <div class="tecla" data-field="sugestoes">.</div>
+                    <div class="tecla" data-field="sugestoes">,</div>
+                    <div class="tecla" data-field="sugestoes">!</div>
+                    <div class="tecla" data-field="sugestoes">?</div>
+                    <div class="tecla" data-field="sugestoes">-</div>
+                    <div class="tecla" data-field="sugestoes">:</div>
+                    <div class="tecla" data-field="sugestoes">;</div>
+                    <div class="tecla" data-field="sugestoes">(</div>
+                    <div class="tecla" data-field="sugestoes">)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script para o teclado virtual e formulário de pesquisa
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ocultar todos os teclados inicialmente
+            document.querySelectorAll('.teclado-virtual').forEach(teclado => {
+                teclado.style.display = 'none';
+            });
+            
+            // Mostrar/ocultar teclado virtual
+            document.querySelectorAll('.alternar-teclado').forEach(botao => {
+                botao.addEventListener('click', function() {
+                    const campoAlvo = this.getAttribute('data-target');
+                    
+                    // Ocultar todos os teclados
+                    document.querySelectorAll('.teclado-virtual').forEach(teclado => {
+                        teclado.style.display = 'none';
+                    });
+                    
+                    // Mostrar o teclado correspondente
+                    if (campoAlvo === 'email') {
+                        const teclado = document.getElementById('tecladoEmail');
+                        teclado.style.display = teclado.style.display === 'block' ? 'none' : 'block';
+                        document.getElementById('email').focus();
+                    } else if (campoAlvo === 'sugestoes') {
+                        const teclado = document.getElementById('tecladoSugestoes');
+                        teclado.style.display = teclado.style.display === 'block' ? 'none' : 'block';
+                        document.getElementById('sugestoes').focus();
+                    }
+                });
+            });
+            
+            // Adicionar evento de clique às teclas
+            document.querySelectorAll('.tecla').forEach(tecla => {
+                tecla.addEventListener('click', function() {
+                    const campoAlvo = this.getAttribute('data-field');
+                    const campo = document.getElementById(campoAlvo);
+                    if (!campo) return;
+                    
+                    const valorTecla = this.textContent;
+                    
+                    if (valorTecla === '⌫') {
+                        // Backspace - remover último caractere
+                        campo.value = campo.value.slice(0, -1);
+                    } else if (valorTecla === 'Espaço') {
+                        // Espaço
+                        campo.value += ' ';
+                    } else if (valorTecla === 'Aa') {
+                        // Alternar maiúsculas/minúsculas
+                        const teclasLetras = document.querySelectorAll(`.tecla[data-field="${campoAlvo}"]`);
+                        const ehMaiusculo = this.getAttribute('data-maiusculo') !== 'false';
+                        
+                        teclasLetras.forEach(tecla => {
+                            if (tecla.textContent.length === 1 && /[a-zA-Z]/.test(tecla.textContent)) {
+                                tecla.textContent = ehMaiusculo ? 
+                                    tecla.textContent.toLowerCase() : 
+                                    tecla.textContent.toUpperCase();
+                            }
+                        });
+                        
+                        this.setAttribute('data-maiusculo', ehMaiusculo ? 'false' : 'true');
+                        return;
+                    } else {
+                        // Caractere normal
+                        campo.value += valorTecla;
+                    }
+                    
+                    // Disparar evento de input para atualizar validações
+                    const evento = new Event('input', { bubbles: true });
+                    campo.dispatchEvent(evento);
+                    
+                    // Focar no input após digitar
+                    campo.focus();
+                });
+            });
+            
+            // Script para o formulário de pesquisa
+            document.getElementById('formPesquisa').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Coletar dados do formulário
+                const avaliacaoExperiencia = document.querySelector('input[name="avaliacaoExperiencia"]:checked').value;
+                const avaliacaoQualidade = document.querySelector('input[name="avaliacaoQualidade"]:checked').value;
+                const avaliacaoClarez = document.querySelector('input[name="avaliacaoClarez"]:checked').value;
+                const avaliacaoRecomendacao = document.querySelector('input[name="avaliacaoRecomendacao"]:checked').value;
+                const email = document.getElementById('email').value;
+                const sugestoes = document.getElementById('sugestoes').value;
+                
+                // Obter ID do visitante
+                const idVisitante = localStorage.getItem('idVisitante');
+                
+                // Criar objeto de dados
+                const dadosPesquisa = {
+                    idVisitante: idVisitante,
+                    avaliacaoExperiencia,
+                    avaliacaoQualidade,
+                    avaliacaoClarez,
+                    avaliacaoRecomendacao,
+                    email,
+                    sugestoes
+                };
+                
+                try {
+                    // Enviar para a API
+                    if (idVisitante) {
+                        await enviarPesquisa(dadosPesquisa);
+                    }
+                    
+                    // Mostrar resultados
+                    mostrarResultados(dadosPesquisa);
+                } catch (erro) {
+                    console.error('Erro ao enviar pesquisa:', erro);
+                    
+                    // Mesmo com erro, mostrar resultados
+                    mostrarResultados(dadosPesquisa);
+                }
+            });
+            
+            // Mostrar resultados da pesquisa
+            function mostrarResultados(dados) {
+                // Limpar conteúdo
+                const caixaConteudo = document.querySelector('.caixa-conteudo');
+                caixaConteudo.innerHTML = `
+                    <h1>Obrigado pela sua participação!</h1>
+                    <div class="resultados-pesquisa">
+                        <h2>Suas Respostas:</h2>
+                        <p><strong>Experiência Geral:</strong> ${dados.avaliacaoExperiencia}</p>
+                        <p><strong>Qualidade das Obras:</strong> ${dados.avaliacaoQualidade}</p>
+                        <p><strong>Clareza das Informações:</strong> ${dados.avaliacaoClarez}</p>
+                        <p><strong>Recomendaria:</strong> ${dados.avaliacaoRecomendacao}</p>
+                    </div>
+                    <div class="botoes">
+                        <a href="index.html" class="btn btn-primario">Voltar ao Início</a>
+                    </div>
+                `;
+                
+                // Marcar pesquisa como concluída
+                localStorage.setItem('pesquisaCompletada', 'true');
+            }
+        });
+    </script>
+    <script src="js/api.js"></script>
+</body>
+</html>

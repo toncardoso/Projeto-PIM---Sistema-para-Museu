@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Marte - Bem-vindo</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="caixa-boas-vindas">
+            <h1>Bem-vindo à Exposição Missão Marte</h1>
+            <p>A primeira viagem humana ao planeta vermelho</p>
+            
+            <div class="botoes">
+                <a href="registro.html" class="btn btn-primario">Iniciar Visita</a>
+                <button id="btnAdmin" class="btn btn-secundario">Acesso Administrativo</button>
+            </div>
+        </div>
+        
+        <!-- Modal de Login Administrativo -->
+        <div id="modalAdmin" class="modal">
+            <div class="conteudo-modal">
+                <span class="fechar">&times;</span>
+                <h2>Acesso Administrativo</h2>
+                <form id="formAdmin">
+                    <div class="grupo-form">
+                        <label for="usuario">Usuário:</label>
+                        <input type="text" id="usuario" required>
+                    </div>
+                    <div class="grupo-form">
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" required>
+                    </div>
+                    <button type="submit" class="btn btn-primario">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/principal.js"></script>
+    <script>
+        // Script simples para o modal de login
+        const btnAdmin = document.getElementById('btnAdmin');
+        const modalAdmin = document.getElementById('modalAdmin');
+        const btnFechar = document.querySelector('.fechar');
+        const formAdmin = document.getElementById('formAdmin');
+        
+        btnAdmin.onclick = function() {
+            modalAdmin.style.display = 'block';
+        }
+        
+        btnFechar.onclick = function() {
+            modalAdmin.style.display = 'none';
+        }
+        
+        window.onclick = function(evento) {
+            if (evento.target == modalAdmin) {
+                modalAdmin.style.display = 'none';
+            }
+        }
+        
+        formAdmin.onsubmit = function(e) {
+            e.preventDefault();
+            const usuario = document.getElementById('usuario').value;
+            const senha = document.getElementById('senha').value;
+            
+            // Verificação simples - em produção, use a API
+            if (usuario === 'admin' && senha === 'admin123') {
+                window.location.href = 'admin.html';
+            } else {
+                alert('Usuário ou senha incorretos');
+            }
+        }
+    </script>
+</body>
+</html>
